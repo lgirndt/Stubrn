@@ -1,28 +1,28 @@
 package stubrn;
 
-import org.testng.Assert;
 import org.testng.annotations.Test;
-import stubrn.annotations.AllByName;
+import stubrn.annotations.ByName;
 
-import java.util.List;
-
-import static com.google.common.collect.Lists.newArrayList;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
 
 /**
  *
  */
 public class StubberyTest {
 
+    interface I {
+        String getString();
+    }
+
     @Test
     public void testStubCreation(){
 
         Stubbery stubbery = new Stubbery();
 
-        ExampleInterface intf = stubbery.stubFor(ExampleInterface.class,new Object(){
-            @AllByName String getString = "foo";
-            @AllByName List<String> getStringList(){ return newArrayList();};
-        });
+        I i = stubbery.stubFor(I.class,new Object(){ @ByName String getString = "foo"; });
 
-        Assert.assertNotNull(intf);
+        assertNotNull(i);
+        assertEquals(i.getString(),"foo");
     }
 }

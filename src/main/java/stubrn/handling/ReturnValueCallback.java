@@ -3,7 +3,7 @@ package stubrn.handling;
 /**
  *
  */
-public class ReturnValueCallback<R> implements MethodCallback<R>{
+public class ReturnValueCallback<R> implements Callback<R> {
 
     private final R value;
 

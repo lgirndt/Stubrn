@@ -1,7 +1,7 @@
 package stubrn.handling;
 
 import com.google.common.collect.Maps;
-import stubrn.annotations.AllByName;
+import stubrn.annotations.ByName;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -14,7 +14,7 @@ import java.util.Map;
  */
 public class AnnotatedFieldMatcher implements MethodMatcher {
 
-    private static final Class<AllByName> ANNOTATION = AllByName.class;
+    private static final Class<ByName> ANNOTATION = ByName.class;
 
     private final Object holder;
     private final Map<String,Field> annotatedFields;
@@ -47,7 +47,7 @@ public class AnnotatedFieldMatcher implements MethodMatcher {
 
 
     @Override
-    public <R> MethodCallback<R> matchMethod(Method method, ProblemPolicy policy) {
+    public <R> Callback<R> matchMethod(Method method, ProblemPolicy policy) {
         try {
             Field f = annotatedFields.get(method.getName());
             if(f == null) {
