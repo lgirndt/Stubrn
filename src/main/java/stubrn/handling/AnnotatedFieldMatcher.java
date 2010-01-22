@@ -5,6 +5,7 @@ import stubrn.annotations.AllByName;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.util.Map;
 
 /**
@@ -26,7 +27,12 @@ public class AnnotatedFieldMatcher implements MethodMatcher {
     private Map<String,Field> createAnnotatedFieldMapping(){
 
         Map<String,Field> map = Maps.newHashMap();
-        for(Field f : holder.getClass().getFields()){
+        for(Field f : holder.getClass().getDeclaredFields()){
+            if(isNotAccessible(f)){
+                continue;
+            }
+            f.setAccessible(true);
+
             if(f.isAnnotationPresent(ANNOTATION)){
                 map.put(f.getName(),f);
             }
@@ -34,8 +40,10 @@ public class AnnotatedFieldMatcher implements MethodMatcher {
         return map;
     }
 
-
-
+    private boolean isNotAccessible(Field f) {
+        int modifier = f.getModifiers();
+        return Modifier.isProtected(modifier) || Modifier.isPrivate(modifier);       
+    }
 
 
     @Override

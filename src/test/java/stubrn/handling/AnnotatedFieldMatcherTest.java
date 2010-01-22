@@ -5,8 +5,8 @@ import stubrn.annotations.AllByName;
 
 import java.lang.reflect.Method;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.*;
+
 
 /**
  *
@@ -23,13 +23,49 @@ public class AnnotatedFieldMatcherTest {
 
     @Test
     public void testSimpleMatchMethod() throws Exception {
-        Method method = WithStringMethod.class.getMethods()[0];
-        WithStringField withField = new WithStringField();
-        AnnotatedFieldMatcher matcher = new AnnotatedFieldMatcher(withField);
+        assertReturnsString(callOnMatcher(new WithStringField()), "Foo");
+    }
 
-        MethodCallback<String> callback = matcher.matchMethod(method,new ThrowingProblemPolicy());
+
+    private static class WithDefaultVisibleStringField {
+        @AllByName String aString = "Foo";
+    }
+
+    @Test
+    public void testDefaultVisibilityOnFields() throws Exception {
+        assertReturnsString(callOnMatcher(new WithDefaultVisibleStringField()),"Foo");
+    }
+
+    @Test
+    public void testProtectedVisibilityOnFields() throws Exception {
+        MethodCallback<String> callback = callOnMatcher(new Object(){
+            @AllByName protected String aString = "Foo";
+        });
+        assertNull(callback);
+    }
+
+    @Test
+    public void testPrivateVisibilityOnFields() throws Exception {
+        assertNull( callOnMatcher(new Object(){
+             @AllByName private String aString = "Foo";
+        }) );
+    }
+
+    private void assertReturnsString(MethodCallback<String> callback, String expected) {
         assertNotNull(callback);
         String value = callback.call(null);
-        assertEquals(value,"Foo");
+        assertEquals(value, expected);
     }
+
+    private MethodCallback<String> callOnMatcher(Object holder) {
+        AnnotatedFieldMatcher matcher = new AnnotatedFieldMatcher(holder);
+        Method method = getTestMethod();
+        MethodCallback<String> callback = matcher.matchMethod(method,new ThrowingProblemPolicy());
+        return callback;
+    }
+
+    private Method getTestMethod() {
+        return WithStringMethod.class.getMethods()[0];
+    }
+
 }
