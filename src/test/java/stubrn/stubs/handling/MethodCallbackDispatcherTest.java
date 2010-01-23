@@ -65,7 +65,6 @@ public class MethodCallbackDispatcherTest {
         MethodCallbackDispatcher<I> dispatcher =
                 new MethodCallbackDispatcher(
                         I.class,
-                        new Object(),
                         defaultCallback,
                         new ThrowingProblemPolicy(),
                         Lists.<MethodMatcher>newArrayList(matcherStub));

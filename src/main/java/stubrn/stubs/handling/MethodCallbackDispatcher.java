@@ -32,7 +32,6 @@ public class MethodCallbackDispatcher<T> {
 
     private final Class<T> onType;
 
-    private final Object holder;
 
     private final ProblemPolicy problemPolicy;
 
@@ -41,18 +40,17 @@ public class MethodCallbackDispatcher<T> {
     private final Callback defaultCallback;
 
     public MethodCallbackDispatcher(
-            Class<T>onType,
-            Object holder,
+            Class<T> onType,
             Callback defaultCallback,
             ProblemPolicy problemPolicy,
             Collection<MethodMatcher> methodMatchers) {
         this.onType = onType;
-        this.holder = holder;
+
         this.defaultCallback = defaultCallback;
 
         this.problemPolicy = problemPolicy;
         this.signatureCallbacks =
-                createSignatureCallbacks(holder,methodMatchers);
+                createSignatureCallbacks(methodMatchers);
     }        
 
     /**
@@ -63,7 +61,7 @@ public class MethodCallbackDispatcher<T> {
      *
      */
     Map<Signature, Callback> createSignatureCallbacks(
-            Object holder,Collection<MethodMatcher> matchers){
+            Collection<MethodMatcher> matchers){
 
         Map<Signature, Callback> map = Maps.newHashMap();
         for(MethodMatcher matcher : matchers){

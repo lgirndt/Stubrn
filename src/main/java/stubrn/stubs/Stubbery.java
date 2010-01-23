@@ -56,7 +56,7 @@ public class Stubbery {
 
         MethodCallbackDispatcher dispatcher =
                 new MethodCallbackDispatcher(
-                        forClass,holder,defaultCallback,problemPolicy,matchers);
+                        forClass, defaultCallback,problemPolicy,matchers);
         return new stubrn.stubs.handling.InvocationHandler(dispatcher);
     }
 
