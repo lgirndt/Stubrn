@@ -5,8 +5,9 @@ import stubrn.annotations.ByName;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
 import java.util.Map;
+
+import static stubrn.handling.Visibilities.isNotAccessible;
 
 /**
  * Creates Method Callbacks for fields in the given Object, which are marked
@@ -38,11 +39,6 @@ public class AnnotatedFieldMatcher implements MethodMatcher {
             }
         }
         return map;
-    }
-
-    private boolean isNotAccessible(Field f) {
-        int modifier = f.getModifiers();
-        return Modifier.isProtected(modifier) || Modifier.isPrivate(modifier);       
     }
 
 

@@ -20,10 +20,8 @@ public class Stubbery {
 
     public Stubbery(ClassLoader classLoader){
         this.classLoader = classLoader;
-        // TODO
-        this.defaultCallback = null;
         this.problemPolicy = new ThrowingProblemPolicy();
-
+        this.defaultCallback = new ByPolicyCallback(problemPolicy);
     }
 
     public Stubbery(){
@@ -33,7 +31,8 @@ public class Stubbery {
     private <T> InvocationHandler createInvocationHandler(Object holder,Class<T> forClass){
 
         Collection<MethodMatcher> matchers = Lists.<MethodMatcher>newArrayList(
-                new AnnotatedFieldMatcher(holder)
+                new AnnotatedFieldMatcher(holder),
+                new ExistingMethodMatcher(holder)
         );
 
         MethodCallbackDispatcher dispatcher =
