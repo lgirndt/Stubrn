@@ -30,6 +30,7 @@ public class ControllerTest {
         Assert.assertEquals(sud.listEntities("foo").size(),2);
     }
 
+    @Test
     public void usageWithFields(){
 
         Stubbery stubbery = new Stubbery();
