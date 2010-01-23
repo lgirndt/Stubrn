@@ -3,16 +3,16 @@ package stubrn.stubs.handling;
 /**
  *
  */
-public class ReturnValueCallback<R> implements Callback<R> {
+public class ReturnValueCallback implements Callback {
 
-    private final R value;
+    private final Object value;
 
-    public ReturnValueCallback(R value) {
+    public ReturnValueCallback(Object value) {
         this.value = value;
     }
 
     @Override
-    public R call(Object[] args) {
+    public Object call(Object[] args) {
         return value;
     }
 }

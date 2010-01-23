@@ -21,15 +21,15 @@ public class MethodCallbackDispatcherTest {
     @Test
     public void testDetermineCallback() throws Exception {
 
-        final Callback<String> defaultCallback = new ReturnValueCallback("Foo");
-        final Callback<String> aCallback = new ReturnValueCallback("Bar");
-        final Callback<Integer> anotherCallback = new ReturnValueCallback(42);
+        final Callback defaultCallback = new ReturnValueCallback("Foo");
+        final Callback aCallback = new ReturnValueCallback("Bar");
+        final Callback anotherCallback = new ReturnValueCallback(42);
 
         // we should eat our own dogfood!
         MethodMatcher matcherStub =
                 new MethodMatcher(){
                     @Override
-                    public Callback<?> matchMethod(Method method, ProblemPolicy policy) {
+                    public Callback matchMethod(Method method, ProblemPolicy policy) {
                         String name = method.getName();
                         if(name.equals("aMethod")){
                             return aCallback;

@@ -42,7 +42,7 @@ public class AnnotatedFieldMatcherTest {
 
     @Test
     public void testProtectedVisibilityOnFields() throws Exception {
-        Callback<String> callback = getCallbackFromMatcher(new Object(){
+        Callback callback = getCallbackFromMatcher(new Object(){
             @ByName
             protected String aString = "Foo";
         });
@@ -74,7 +74,7 @@ public class AnnotatedFieldMatcherTest {
             @ByName Integer anInteger = 23;
         });
 
-        Callback<String> aStrCallback =
+        Callback aStrCallback =
                 matcher.matchMethod(methods.get("aString"),new ThrowingProblemPolicy());
         assertEquals(aStrCallback.call(null),"Foo");
 
@@ -110,7 +110,7 @@ public class AnnotatedFieldMatcherTest {
 
     @Test
     public void testUnassignedField(){
-        Callback<String> callback = getCallbackFromMatcher(new Object(){
+        Callback callback = getCallbackFromMatcher(new Object(){
             @ByName String aString;
         });
         assertNotNull(callback);
@@ -132,16 +132,16 @@ public class AnnotatedFieldMatcherTest {
         return map;
     }
 
-    private void assertReturnsString(Callback<String> callback, String expected) {
+    private void assertReturnsString(Callback callback, String expected) {
         assertNotNull(callback);
-        String value = callback.call(null);
+        String value = (String) callback.call(null);
         assertEquals(value, expected);
     }
 
-    private Callback<String> getCallbackFromMatcher(Object holder) {
+    private Callback getCallbackFromMatcher(Object holder) {
         AnnotatedFieldMatcher matcher = new AnnotatedFieldMatcher(holder);
         Method method = getTestMethod();
-        Callback<String> callback = matcher.matchMethod(method,new ThrowingProblemPolicy());
+        Callback callback = matcher.matchMethod(method,new ThrowingProblemPolicy());
         return callback;
     }
 

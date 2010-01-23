@@ -3,7 +3,7 @@ package stubrn.stubs.handling;
 /**
  * Executes an arbitrary method call
  */
-public interface Callback<R> {
+public interface Callback {
 
-    R call(Object [] args);    
+    Object call(Object [] args);    
 }

@@ -14,5 +14,5 @@ public interface MethodMatcher {
      * @param policy
      * @return a Callback which is able handle a call of the given method
      */
-    <R> Callback<R> matchMethod(Method method, ProblemPolicy policy);
+    <R> Callback matchMethod(Method method, ProblemPolicy policy);
 }

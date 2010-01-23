@@ -43,7 +43,7 @@ public class AnnotatedFieldMatcher implements MethodMatcher {
 
 
     @Override
-    public <R> Callback<R> matchMethod(Method method, ProblemPolicy policy) {
+    public  Callback matchMethod(Method method, ProblemPolicy policy) {
         try {
             Field f = annotatedFields.get(method.getName());
             if(f == null) {
@@ -55,7 +55,7 @@ public class AnnotatedFieldMatcher implements MethodMatcher {
                 policy.handleProblem(constructProblemMsg(method, methodType, fieldType));
                 return null;
             }
-            return new ReturnValueCallback<R>((R) f.get(holder));
+            return new ReturnValueCallback(f.get(holder));
             
         } catch (IllegalAccessException e) {
             policy.handleProblem(e.getMessage());
