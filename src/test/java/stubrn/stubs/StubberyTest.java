@@ -1,7 +1,6 @@
-package stubrn;
+package stubrn.stubs;
 
 import org.testng.annotations.Test;
-import stubrn.stubs.Stubbery;
 import stubrn.stubs.annotations.ByName;
 
 import static org.testng.Assert.assertEquals;
