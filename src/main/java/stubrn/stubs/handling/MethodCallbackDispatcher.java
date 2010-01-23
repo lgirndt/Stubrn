@@ -1,4 +1,4 @@
-package stubrn.handling;
+package stubrn.stubs.handling;
 
 import com.google.common.collect.Maps;
 

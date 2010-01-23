@@ -1,8 +1,8 @@
-package stubrn.handling;
+package stubrn.stubs.handling;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import stubrn.annotations.ByName;
+import stubrn.stubs.annotations.ByName;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

@@ -1,13 +1,13 @@
-package stubrn.handling;
+package stubrn.stubs.handling;
 
 import com.google.common.collect.Maps;
-import stubrn.annotations.ByName;
+import stubrn.stubs.annotations.ByName;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Map;
 
-import static stubrn.handling.Visibilities.isNotAccessible;
+import static stubrn.stubs.handling.Visibilities.isNotAccessible;
 
 /**
  * Creates Method Callbacks for fields in the given Object, which are marked

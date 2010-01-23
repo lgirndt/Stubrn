@@ -1,7 +1,7 @@
-package stubrn;
+package stubrn.stubs;
 
 import com.google.common.collect.Lists;
-import stubrn.handling.*;
+import stubrn.stubs.handling.*;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
@@ -38,7 +38,7 @@ public class Stubbery {
         MethodCallbackDispatcher dispatcher =
                 new MethodCallbackDispatcher(
                         forClass,holder,defaultCallback,problemPolicy,matchers);
-        return new stubrn.handling.InvocationHandler(dispatcher);
+        return new stubrn.stubs.handling.InvocationHandler(dispatcher);
     }
 
     public <T> T stubFor(Class<T> forClass, Object o){

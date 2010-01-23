@@ -1,4 +1,4 @@
-package stubrn.annotations;
+package stubrn.stubs.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

@@ -1,4 +1,4 @@
-package stubrn.handling;
+package stubrn.stubs.handling;
 
 /**
  * Executes an arbitrary method call
