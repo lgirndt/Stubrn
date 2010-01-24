@@ -115,4 +115,11 @@ public class StubberyTest {
         I i = stubbery.stubFor(I.class,"getString","foo");
         assertEquals(i.getString(),"foo");
     }
+
+    @Test
+    public void testNotStubbedMethod(){
+       Stubbery stubbery = new Stubbery();
+        I i = stubbery.stubFor(I.class,new Object());
+        i.getString();
+    }
 }
