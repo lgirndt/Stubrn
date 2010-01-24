@@ -37,5 +37,5 @@ interface MethodMatcher {
      *         method has a different return type than the implementations desired callback, such
      *         an exception might be thrown.
      */
-    <R> Callback matchMethod(Method method, ProblemPolicy policy);
+    Callback matchMethod(Method method, ProblemPolicy policy);
 }
