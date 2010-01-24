@@ -24,5 +24,7 @@ package stubrn.stubs;
  */
 public interface Callback {
 
+    Class<?> getReturnType(); 
+
     Object call(Object [] args);    
 }

@@ -76,6 +76,13 @@ public class AnnotatedFieldMatcherTest {
         }) );
     }
 
+    @Test(expectedExceptions = InvalidReturnTypeException.class)
+    public void testWithWrongType() {
+        getCallbackFromMatcher(new Object(){
+            @ByName int aString = 42;
+        });
+    }
+
 
     private static interface WithMethods {
         String  aString();

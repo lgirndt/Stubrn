@@ -165,6 +165,15 @@ public class ExistingMethodMatcherTest {
         assertCallbackReturns(createCallback(methods[2],holder),23);
     }
 
+    @Test(expectedExceptions = InvalidReturnTypeException.class)
+    public void testNotMatchingTypeByName(){
+        Object holder = new Object(){
+            @ByName double foo(){ return 23;}
+        };
+
+        Callback callback = createCallback(getSingleMethod(), holder);                
+    }
+
     private void assertCallbackReturns(Callback callback, int expected) {
         assertNotNull(callback,"Callback should not be null");
         assertEquals(callback.call( toArgs(null,null) ),expected);

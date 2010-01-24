@@ -25,9 +25,16 @@ package stubrn.stubs;
 class ReturnValueCallback implements Callback {
 
     private final Object value;
+    private final Class<?> type;
 
-    public ReturnValueCallback(Object value) {
+    public ReturnValueCallback(Object value,Class<?> type) {
         this.value = value;
+        this.type = type;
+    }
+
+    @Override
+    public Class<?> getReturnType() {
+        return type;
     }
 
     @Override

@@ -40,9 +40,9 @@ public class MethodCallbackDispatcherTest {
     @Test
     public void testDetermineCallback() throws Exception {
 
-        final Callback defaultCallback = new ReturnValueCallback("Foo");
-        final Callback aCallback = new ReturnValueCallback("Bar");
-        final Callback anotherCallback = new ReturnValueCallback(42);
+        final Callback defaultCallback = new ReturnValueCallback("Foo",String.class);
+        final Callback aCallback = new ReturnValueCallback("Bar",String.class);
+        final Callback anotherCallback = new ReturnValueCallback(42,Integer.class);
 
         // we should eat our own dogfood!
         MethodMatcher matcherStub =

@@ -108,4 +108,11 @@ public class StubberyTest {
         assertEquals(i.getString(),"foo");
         assertEquals(i.getIntValue(),42);
     }
+
+    @Test
+    public void testStubForWithNameObject(){
+        Stubbery stubbery = new Stubbery();
+        I i = stubbery.stubFor(I.class,"getString","foo");
+        assertEquals(i.getString(),"foo");
+    }
 }

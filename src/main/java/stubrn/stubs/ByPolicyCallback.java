@@ -31,6 +31,12 @@ class ByPolicyCallback implements Callback {
     }
 
     @Override
+    public Class<?> getReturnType() {
+        return Object.class;
+    }
+    
+
+    @Override
     public Object call(Object[] args) {
         policy.handleProblem("Such a method does not exist in stub.");
         return null;

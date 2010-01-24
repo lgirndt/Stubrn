@@ -54,16 +54,23 @@ class ExistingMethodMatcher implements MethodMatcher {
             method.setAccessible(true);
 
             if (!method.isAnnotationPresent(ByName.class)) {
-
-                Signature signature = Signature.create(method);
-                signatureCallbacks.put(signature, createCallback(holder, method,false));
-
+                fillMethodBySignature(holder, method);
             } else {
-                String name = method.getName();
-                if (!nameCallbacks.containsKey(name)) {
-                    nameCallbacks.put(name, createCallback(holder, method,true));
-                }
+                fillMethodByName(holder, method);
             }
+        }
+    }
+
+    private void fillMethodBySignature(Object holder, Method method) {
+        Signature signature = Signature.create(method);
+        signatureCallbacks.put(signature, createCallback(holder, method,false));
+    }
+
+    private void fillMethodByName(Object holder, Method method) {
+        String name = method.getName();
+
+        if (!nameCallbacks.containsKey(name)) {
+            nameCallbacks.put(name, createCallback(holder, method,true));
         }
     }
 
@@ -115,6 +122,11 @@ class ExistingMethodMatcher implements MethodMatcher {
             }
 
             @Override
+            public Class<?> getReturnType() {
+                return method.getReturnType();
+            }
+
+            @Override
             public Object call(Object[] args) {
 
                 try {
@@ -135,6 +147,15 @@ class ExistingMethodMatcher implements MethodMatcher {
         if(signatureCallback != null){
             return signatureCallback;
         }
-        return nameCallbacks.get(method.getName());
+        Callback nameCallback = nameCallbacks.get(method.getName());
+        if(nameCallback == null){
+            return null;
+        }
+        
+        if(!TypeCoercion.isConvertible(nameCallback.getReturnType(), method.getReturnType())){
+            throw new InvalidReturnTypeException();
+        }
+
+        return nameCallback;
     }
 }

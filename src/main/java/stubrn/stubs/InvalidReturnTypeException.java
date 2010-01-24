@@ -16,26 +16,26 @@
  *  specific language governing permissions and limitations
  *  under the License.
  */
-
 package stubrn.stubs;
 
-import java.lang.reflect.Method;
+/*
+*
+*/
+public class InvalidReturnTypeException extends RuntimeException{
+    
+    public InvalidReturnTypeException() {
+        super();
+    }
 
-/**
- *
- */
-interface MethodMatcher {
+    public InvalidReturnTypeException(String s) {
+        super(s);
+    }
 
-    /**
-     *
-     *
-     * @param method
-     * @param policy
-     * @return a Callback which is able handle a call of the given method
-     *
-     * @throws InvalidReturnTypeException If a match is obtained by the method name, and the given
-     *         method has a different return type than the implementations desired callback, such
-     *         an exception might be thrown.
-     */
-    <R> Callback matchMethod(Method method, ProblemPolicy policy);
+    public InvalidReturnTypeException(String s, Throwable throwable) {
+        super(s, throwable);
+    }
+
+    public InvalidReturnTypeException(Throwable throwable) {
+        super(throwable);
+    }
 }

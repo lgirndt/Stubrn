@@ -23,6 +23,7 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 
 import static java.util.Arrays.asList;
@@ -79,11 +80,26 @@ public class Stubbery {
         return Arrays.<MethodMatcher>asList(new MapMatcher(holder));
     }
 
+    /**
+     *
+     * @param forClass
+     * @param o
+     * @param forClass
+     * @return
+     *
+     * @throws InvalidReturnTypeException TODO
+     */
     @SuppressWarnings("unchecked")
     public <T> T stubFor(Class<T> forClass, Object o){
 
         return (T) Proxy.newProxyInstance(
                 classLoader,
                 new Class[] {forClass},createInvocationHandler(o,forClass));
+    }
+
+    public <T> T stubFor(Class<T> forClass,String methodName,Object returnValue){
+        Map<String,Object> map = new HashMap<String,Object>();
+        map.put(methodName,returnValue);
+        return stubFor(forClass,map);
     }
 }

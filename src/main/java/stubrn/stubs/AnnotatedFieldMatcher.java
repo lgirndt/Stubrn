@@ -63,16 +63,22 @@ class AnnotatedFieldMatcher implements MethodMatcher {
     public  Callback matchMethod(Method method, ProblemPolicy policy) {
         try {
             Field f = annotatedFields.get(method.getName());
+
             if(f == null) {
                 return null;
             }
-            Class<?> methodType = method.getReturnType();
-            Class<?> fieldType = f.getType();
-            if(!methodType.isAssignableFrom(fieldType)){
-                policy.handleProblem(constructProblemMsg(method, methodType, fieldType));
-                return null;
+
+            ReturnValueCallback callback = new ReturnValueCallback(f.get(holder),f.getType());
+
+            Class<?> toType = method.getReturnType();
+            Class<?> fromType = callback.getReturnType();
+
+            if(!TypeCoercion.isConvertible(fromType,toType)){
+                String msg = constructProblemMsg(method, toType, fromType);
+                throw new InvalidReturnTypeException(msg);
             }
-            return new ReturnValueCallback(f.get(holder));
+
+            return callback;
             
         } catch (IllegalAccessException e) {
             policy.handleProblem(e.getMessage());

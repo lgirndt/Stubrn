@@ -22,6 +22,6 @@ class MapMatcher implements MethodMatcher {
             return null;
         }
 
-        return new ReturnValueCallback(value);
+        return new ReturnValueCallback(value,value.getClass());
     }
 }
