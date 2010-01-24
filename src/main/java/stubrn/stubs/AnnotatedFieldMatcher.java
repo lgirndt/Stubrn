@@ -81,8 +81,7 @@ class AnnotatedFieldMatcher implements MethodMatcher {
             return callback;
             
         } catch (IllegalAccessException e) {
-            policy.handleProblem(e.getMessage());
-            return null;
+            throw new StubrnHandlingException(e);
         }
     }
 

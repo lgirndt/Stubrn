@@ -35,14 +35,8 @@ public class Stubbery {
 
     private final ClassLoader classLoader;
 
-    private Callback defaultCallback;
-
-    private ProblemPolicy problemPolicy;
-
     public Stubbery(ClassLoader classLoader){
         this.classLoader = classLoader;
-        this.problemPolicy = new ThrowingProblemPolicy();
-        this.defaultCallback = new ByPolicyCallback(problemPolicy);
     }
 
     public Stubbery(){
@@ -55,7 +49,7 @@ public class Stubbery {
 
         MethodCallbackDispatcher<T> dispatcher =
                 new MethodCallbackDispatcher<T>(
-                        forClass, defaultCallback,problemPolicy,matchers);
+                        forClass, matchers);
         return new stubrn.stubs.InvocationHandler(dispatcher);
     }
 

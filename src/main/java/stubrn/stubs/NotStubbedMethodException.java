@@ -16,14 +16,25 @@
  *  specific language governing permissions and limitations
  *  under the License.
  */
-
 package stubrn.stubs;
 
-/**
- *
- */
-public interface ProblemPolicy {
+/*
+*
+*/
+public class NotStubbedMethodException extends RuntimeException {
+    public NotStubbedMethodException() {
+        super();
+    }
 
-    void handleProblem(String msg,Object o);
-    void handleProblem(String msg);
+    public NotStubbedMethodException(String s) {
+        super(s);
+    }
+
+    public NotStubbedMethodException(String s, Throwable throwable) {
+        super(s, throwable);
+    }
+
+    public NotStubbedMethodException(Throwable throwable) {
+        super(throwable);
+    }
 }

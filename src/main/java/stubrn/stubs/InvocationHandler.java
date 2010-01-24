@@ -35,6 +35,10 @@ class InvocationHandler implements java.lang.reflect.InvocationHandler {
     @Override
     public Object invoke(Object o, Method method, Object[] objects) throws Throwable {
         Callback callback = dispatcher.determineCallback(method);
+        if(callback == null){
+            throw new NotStubbedMethodException(
+                    "There is no stub method registered for " + method.toString());
+        }
         return callback.call(objects);
     }
 }

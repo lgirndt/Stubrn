@@ -15,7 +15,7 @@ class MapMatcher implements MethodMatcher {
     }
 
     @Override
-    public <R> Callback matchMethod(Method method, ProblemPolicy policy) {
+    public Callback matchMethod(Method method) {
 
         Object value = holder.get(method.getName());
         if(value == null){

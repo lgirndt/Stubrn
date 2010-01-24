@@ -20,16 +20,21 @@
 package stubrn.stubs;
 
 import com.google.common.collect.Lists;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.lang.reflect.Method;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNull;
 
 /**
  *
  */
 public class MethodCallbackDispatcherTest {
+    private Callback aCallback;
+    private Callback anotherCallback;
+    private MethodCallbackDispatcher<I> dispatcher;
 
     interface I {
         String aMethod();
@@ -37,12 +42,10 @@ public class MethodCallbackDispatcherTest {
         void notStubbed();
     }
 
-    @Test
-    public void testDetermineCallback() throws Exception {
-
-        final Callback defaultCallback = new ReturnValueCallback("Foo",String.class);
-        final Callback aCallback = new ReturnValueCallback("Bar",String.class);
-        final Callback anotherCallback = new ReturnValueCallback(42,Integer.class);
+    @BeforeTest
+    private void setupTest() {
+        aCallback = new ReturnValueCallback("Bar",String.class);
+        anotherCallback = new ReturnValueCallback(42,Integer.class);
 
         // we should eat our own dogfood!
         MethodMatcher matcherStub =
@@ -62,17 +65,24 @@ public class MethodCallbackDispatcherTest {
                     }
                 };
 
-        MethodCallbackDispatcher<I> dispatcher =
+        this.dispatcher =
                 new MethodCallbackDispatcher<I>(
                         I.class,
-                        defaultCallback,
-                        new ThrowingProblemPolicy(),
                         Lists.<MethodMatcher>newArrayList(matcherStub));
+    }
 
+
+    @Test
+    public void testDetermineCallback() throws Exception {
         Method[] methods = I.class.getMethods();
         
         assertEquals(dispatcher.determineCallback(methods[0]), aCallback);
         assertEquals(dispatcher.determineCallback(methods[1]), anotherCallback);
-        assertEquals(dispatcher.determineCallback(methods[2]), defaultCallback);
     }
+
+    @Test
+    public void testNotStubbedMethod(){
+        assertNull(dispatcher.determineCallback(I.class.getMethods()[2]));
+    }
+
 }

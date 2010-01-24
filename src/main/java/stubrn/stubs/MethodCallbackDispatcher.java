@@ -31,23 +31,14 @@ class MethodCallbackDispatcher<T> {
 
     private final Class<T> onType;
 
-
-    private final ProblemPolicy problemPolicy;
-
     private final Map<Signature, Callback> signatureCallbacks;
-
-    private final Callback defaultCallback;
 
     public MethodCallbackDispatcher(
             Class<T> onType,
-            Callback defaultCallback,
-            ProblemPolicy problemPolicy,
             Collection<MethodMatcher> methodMatchers) {
         this.onType = onType;
 
-        this.defaultCallback = defaultCallback;
 
-        this.problemPolicy = problemPolicy;
         this.signatureCallbacks =
                 createSignatureCallbacks(methodMatchers);
     }        
@@ -88,7 +79,6 @@ class MethodCallbackDispatcher<T> {
      */
     public Callback determineCallback(Method method){
         Signature s = Signature.create(method);
-        Callback callback = signatureCallbacks.get(s);
-        return (callback != null) ? callback : defaultCallback;
+        return signatureCallbacks.get(s);
     }
 }
