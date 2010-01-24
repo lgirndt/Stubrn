@@ -143,6 +143,17 @@ public class AnnotatedFieldMatcherTest {
         assertNull(callback.call(null));
     }
 
+    public interface WithVoid {
+        void method();
+    }
+
+    @Test(expectedExceptions = InvalidReturnTypeException.class)
+    public void testMethodWithVoid(){
+        getCallbackFromMatcher(WithVoid.class.getMethods()[0],new Object(){
+           @ByName int method = 42; 
+        });
+    }
+
     private void assertMatchingString(AnnotatedFieldMatcher matcher, Method m, String expected) {
         Callback callback = matcher.matchMethod(m);
         assertNotNull(callback);
@@ -165,8 +176,11 @@ public class AnnotatedFieldMatcherTest {
     }
 
     private Callback getCallbackFromMatcher(Object holder) {
+        return getCallbackFromMatcher(getTestMethod(),holder);
+    }
+
+    private Callback getCallbackFromMatcher(Method method,Object holder) {
         AnnotatedFieldMatcher matcher = new AnnotatedFieldMatcher(holder);
-        Method method = getTestMethod();
         Callback callback = matcher.matchMethod(method);
         return callback;
     }
