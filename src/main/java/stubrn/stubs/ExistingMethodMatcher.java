@@ -151,11 +151,25 @@ class ExistingMethodMatcher implements MethodMatcher {
         if(nameCallback == null){
             return null;
         }
-        
-        if(!TypeCoercion.isConvertible(nameCallback.getReturnType(), method.getReturnType())){
-            throw new InvalidReturnTypeException();
+
+        Class<?> stubType = nameCallback.getReturnType();
+        Class<?> methodType = method.getReturnType();
+
+        if(!TypeCoercion.isConvertible(stubType, methodType)){
+            return throwInvalidReturnTypeException(method, stubType, methodType);
         }
 
         return nameCallback;
+    }
+
+    private Callback throwInvalidReturnTypeException(Method method, Class<?> stubType, Class<?> methodType) {
+        String msg = "Method return type '" +
+            methodType.getName() +
+            "' and Stub return type '" +
+            stubType.getName() +
+            "' of method '" +
+            method.getName() +
+            "' differ";
+        throw new InvalidReturnTypeException();
     }
 }

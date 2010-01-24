@@ -89,7 +89,7 @@ class AnnotatedFieldMatcher implements MethodMatcher {
     private String constructProblemMsg(Method method, Class<?> methodType, Class<?> fieldType) {
         return "Method return type '" +
                 methodType.getName() +
-                "' and Field return type '" +
+                "' and Stub return type '" +
                 fieldType.getName() +
                 "' of method '" +
                 method.getName() +
