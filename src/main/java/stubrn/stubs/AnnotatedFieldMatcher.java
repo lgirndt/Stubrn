@@ -19,11 +19,11 @@
 
 package stubrn.stubs;
 
-import com.google.common.collect.Maps;
 import stubrn.stubs.annotations.ByName;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -44,7 +44,7 @@ class AnnotatedFieldMatcher implements MethodMatcher {
 
     private Map<String,Field> createAnnotatedFieldMapping(){
 
-        Map<String,Field> map = Maps.newHashMap();
+        Map<String,Field> map = new HashMap<String,Field>();
         for(Field f : holder.getClass().getDeclaredFields()){
             if(Visibilities.isNotAccessible(f)){
                 continue;

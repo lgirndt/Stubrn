@@ -19,11 +19,11 @@
 
 package stubrn.stubs;
 
-import com.google.common.collect.Lists;
-
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
 import java.util.Collection;
+
+import static java.util.Arrays.asList;
 
 /**
  *
@@ -48,7 +48,7 @@ public class Stubbery {
 
     private <T> InvocationHandler createInvocationHandler(Object holder,Class<T> forClass){
 
-        Collection<MethodMatcher> matchers = Lists.newArrayList(
+        Collection<MethodMatcher> matchers = asList(
                 new AnnotatedFieldMatcher(holder),
                 new ExistingMethodMatcher(holder)
         );

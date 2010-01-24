@@ -19,10 +19,9 @@
 
 package stubrn.stubs;
 
-import com.google.common.collect.Maps;
-
 import java.lang.reflect.Method;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -63,7 +62,7 @@ class MethodCallbackDispatcher<T> {
     Map<Signature, Callback> createSignatureCallbacks(
             Collection<MethodMatcher> matchers){
 
-        Map<Signature, Callback> map = Maps.newHashMap();
+        Map<Signature, Callback> map = new HashMap<Signature,Callback>();
         for(MethodMatcher matcher : matchers){
             for(Method method : onType.getMethods()){
 

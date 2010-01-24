@@ -19,9 +19,9 @@
 
 package stubrn.stubs;
 
-import com.google.common.collect.Lists;
-
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -37,11 +37,11 @@ class Signature {
     public Signature(Class<?> returnType, String name, List<Class<?>> parameterTypes) {
         this.returnType = returnType;
         this.name = name;
-        this.parameterTypes = Collections.unmodifiableList(Lists.newArrayList(parameterTypes));
+        this.parameterTypes = Collections.unmodifiableList(new ArrayList<Class<?>>(parameterTypes));
     }
 
     public Signature(Class<?> returnType, String name, Class<?> ... parameterTypes) {
-        this(returnType,name, Lists.newArrayList(parameterTypes));
+        this(returnType,name, Arrays.asList((parameterTypes)));
     }
 
     public Class<?> getReturnType() {

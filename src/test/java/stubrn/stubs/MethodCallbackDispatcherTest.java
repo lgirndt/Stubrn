@@ -63,7 +63,7 @@ public class MethodCallbackDispatcherTest {
                 };
 
         MethodCallbackDispatcher<I> dispatcher =
-                new MethodCallbackDispatcher(
+                new MethodCallbackDispatcher<I>(
                         I.class,
                         defaultCallback,
                         new ThrowingProblemPolicy(),

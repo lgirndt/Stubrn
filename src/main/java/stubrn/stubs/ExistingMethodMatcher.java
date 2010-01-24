@@ -19,13 +19,12 @@
 
 package stubrn.stubs;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import stubrn.stubs.annotations.ByName;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -44,8 +43,8 @@ class ExistingMethodMatcher implements MethodMatcher {
     }
 
     private void fillCallbackMaps(Object holder) {
-        signatureCallbacks = Maps.newHashMap();
-        nameCallbacks = Maps.newHashMap();
+        signatureCallbacks = new HashMap<Signature,Callback>();
+        nameCallbacks = new HashMap<String,Callback>();
 
         for (Method method : holder.getClass().getDeclaredMethods()) {
 
@@ -69,7 +68,7 @@ class ExistingMethodMatcher implements MethodMatcher {
     }
 
     private void fillDummyPrimitiveValueMap(){
-        dummyPrimitiveValues = Maps.newHashMap();
+        dummyPrimitiveValues = new HashMap<Class<?>,Object>();
 
         Integer zero = 0;
         putPrimVal(byte.class,zero.byteValue() );
@@ -86,7 +85,7 @@ class ExistingMethodMatcher implements MethodMatcher {
     }
 
     private Object [] createDummyArgs(final Method method){
-        ArrayList<Object> dummyArgsList = Lists.newArrayList();
+        ArrayList<Object> dummyArgsList = new ArrayList<Object>();
         for(Class<?> t : method.getParameterTypes() ){
             dummyArgsList.add(getDummyValue(t));
         }
