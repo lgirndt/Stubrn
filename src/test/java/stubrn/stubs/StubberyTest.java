@@ -116,7 +116,7 @@ public class StubberyTest {
         assertEquals(i.getString(),"foo");
     }
 
-    @Test
+    @Test(expectedExceptions = NotStubbedMethodException.class)
     public void testNotStubbedMethod(){
        Stubbery stubbery = new Stubbery();
         I i = stubbery.stubFor(I.class,new Object());
