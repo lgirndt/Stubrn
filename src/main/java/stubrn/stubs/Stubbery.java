@@ -21,7 +21,9 @@ package stubrn.stubs;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Map;
 
 import static java.util.Arrays.asList;
 
@@ -48,10 +50,7 @@ public class Stubbery {
 
     private <T> InvocationHandler createInvocationHandler(Object holder,Class<T> forClass){
 
-        Collection<MethodMatcher> matchers = asList(
-                new AnnotatedFieldMatcher(holder),
-                new ExistingMethodMatcher(holder)
-        );
+        Collection<MethodMatcher> matchers = createMatchers(holder);
 
         MethodCallbackDispatcher<T> dispatcher =
                 new MethodCallbackDispatcher<T>(
@@ -59,11 +58,32 @@ public class Stubbery {
         return new stubrn.stubs.InvocationHandler(dispatcher);
     }
 
+    @SuppressWarnings("unchecked")
+    private Collection<MethodMatcher> createMatchers(Object holder){
+        if(holder instanceof Map){
+            return createMatchersForMaps((Map<String,Object>) holder);
+        }
+        else {
+            return createMatchersForObjects(holder);
+        }
+    }
+
+    private Collection<MethodMatcher> createMatchersForObjects(Object holder) {
+        return asList(
+                new AnnotatedFieldMatcher(holder),
+                new ExistingMethodMatcher(holder)
+        );
+    }
+
+    private Collection<MethodMatcher> createMatchersForMaps(Map<String,Object> holder){
+        return Arrays.<MethodMatcher>asList(new MapMatcher(holder));
+    }
+
+    @SuppressWarnings("unchecked")
     public <T> T stubFor(Class<T> forClass, Object o){
 
-        T proxy = (T) Proxy.newProxyInstance(
+        return (T) Proxy.newProxyInstance(
                 classLoader,
                 new Class[] {forClass},createInvocationHandler(o,forClass));
-        return proxy;
     }
 }

@@ -19,8 +19,11 @@
 
 package stubrn.stubs;
 
+import com.google.common.collect.ImmutableMap;
 import org.testng.annotations.Test;
 import stubrn.stubs.annotations.ByName;
+
+import java.util.Map;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
@@ -89,5 +92,20 @@ public class StubberyTest {
         assertEquals(1,stub.method(42));
         assertEquals(1,stub.method("foo"));
         assertEquals(1,stub.method(23.42));
+    }
+
+    @Test
+    public void testMapHolder(){
+        Stubbery stubbery = new Stubbery();
+
+        Map<String,Object> map = ImmutableMap.<String,Object>builder()
+                .put("getString","foo")
+                .put("getIntValue",42)
+                .build();
+
+        I i = stubbery.stubFor(I.class,map);
+        
+        assertEquals(i.getString(),"foo");
+        assertEquals(i.getIntValue(),42);
     }
 }

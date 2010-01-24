@@ -22,6 +22,20 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.testng:testng:jdk15:5.8" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: junit:junit:3.8.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: com.google.collections:google-collections:1.0-rc5" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.codehaus.groovy.maven.runtime:gmaven-runtime-default:1.0-rc-3" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.slf4j:slf4j-api:1.5.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.codehaus.groovy.maven.runtime:gmaven-runtime-1.5:1.0-rc-3" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.codehaus.groovy.maven.feature:gmaven-feature-support:1.0-rc-3" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.codehaus.groovy.maven.feature:gmaven-feature-api:1.0-rc-3" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.codehaus.groovy.maven.runtime:gmaven-runtime-support:1.0-rc-3" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.codehaus.groovy.maven.runtime:gmaven-runtime-api:1.0-rc-3" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.codehaus.groovy.maven:gmaven-common:1.0-rc-3" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.codehaus.plexus:plexus-utils:1.5.5" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: com.thoughtworks.qdox:qdox:1.6.3" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.codehaus.groovy:groovy-all-minimal:1.5.6" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.apache.ant:ant:1.7.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.apache.ant:ant-launcher:1.7.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: jline:jline:0.9.94" level="project" />
   </component>
 </module>
 
