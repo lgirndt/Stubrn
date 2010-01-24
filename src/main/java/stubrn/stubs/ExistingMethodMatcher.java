@@ -78,13 +78,14 @@ class ExistingMethodMatcher implements MethodMatcher {
         dummyPrimitiveValues = new HashMap<Class<?>,Object>();
 
         Integer zero = 0;
-        putPrimVal(byte.class,zero.byteValue() );
-        putPrimVal(char.class,'0');
-        putPrimVal(short.class, zero.shortValue());
-        putPrimVal(int.class,zero);
-        putPrimVal(long.class,zero.longValue());
-        putPrimVal(double.class,zero.doubleValue());
-        putPrimVal(float.class,zero.floatValue());
+        putPrimVal(Byte.TYPE,zero.byteValue() );
+        putPrimVal(Character.TYPE,'0');
+        putPrimVal(Short.TYPE, zero.shortValue());
+        putPrimVal(Integer.TYPE,zero);
+        putPrimVal(Long.TYPE,zero.longValue());
+        putPrimVal(Double.TYPE,zero.doubleValue());
+        putPrimVal(Float.TYPE,zero.floatValue());
+        putPrimVal(Boolean.TYPE,false);
     }
 
     private void putPrimVal(Class<?> type,Object val){

@@ -119,13 +119,13 @@ public class ExistingMethodMatcherTest {
 
 
     interface AllTypes {
-        void method(byte b,char c,short s,int i,double d,float f);
+        void method(byte b,char c,short s,int i,double d,float f,boolean g);
     }
 
     @Test
     public void testDummyValueSubstitution(){
         Object holder = new Object(){
-            @ByName void method(byte b,char c,short s,int i,double d,float f){
+            @ByName void method(byte b,char c,short s,int i,double d,float f,boolean g){
                 Integer zero = 0;
                 assertEquals(b, zero.byteValue());
                 assertEquals(c,'0');
@@ -133,6 +133,7 @@ public class ExistingMethodMatcherTest {
                 assertEquals(i,zero.intValue());
                 assertEquals(d,zero.doubleValue());
                 assertEquals(f,zero.floatValue());
+                assertEquals(g,false);
             }
         };
         Callback callback = createCallback(AllTypes.class.getMethods()[0],holder);
