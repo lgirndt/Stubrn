@@ -186,7 +186,7 @@ public class ExistingMethodMatcherTest {
     private Callback createCallback(Method method, Object holder) {
         ExistingMethodMatcher matcher = new ExistingMethodMatcher(holder);
         Callback callback = matcher.matchMethod(
-                method,new ThrowingProblemPolicy());
+                method);
         return callback;
     }
 

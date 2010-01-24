@@ -48,7 +48,7 @@ public class MethodCallbackDispatcherTest {
         MethodMatcher matcherStub =
                 new MethodMatcher(){
                     @Override
-                    public Callback matchMethod(Method method, ProblemPolicy policy) {
+                    public Callback matchMethod(Method method) {
                         String name = method.getName();
                         if(name.equals("aMethod")){
                             return aCallback;

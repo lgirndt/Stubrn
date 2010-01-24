@@ -142,7 +142,7 @@ class ExistingMethodMatcher implements MethodMatcher {
     }
 
     @Override
-    public Callback matchMethod(Method method, ProblemPolicy policy) {
+    public Callback matchMethod(Method method) {
         final Callback signatureCallback = signatureCallbacks.get(Signature.create(method));
         if(signatureCallback != null){
             return signatureCallback;

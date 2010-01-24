@@ -101,15 +101,15 @@ public class AnnotatedFieldMatcherTest {
         });
 
         Callback aStrCallback =
-                matcher.matchMethod(methods.get("aString"),new ThrowingProblemPolicy());
+                matcher.matchMethod(methods.get("aString"));
         assertEquals(aStrCallback.call(null),"Foo");
 
         Callback anIntCallback =
-                matcher.matchMethod(methods.get("anInt"), new ThrowingProblemPolicy());
+                matcher.matchMethod(methods.get("anInt"));
         assertEquals(anIntCallback.call(null), 42);
 
         Callback anIntegerCallback =
-                matcher.matchMethod(methods.get("anInteger"), new ThrowingProblemPolicy());
+                matcher.matchMethod(methods.get("anInteger"));
         assertEquals(anIntegerCallback.call(null),23);
     }
 
@@ -144,7 +144,7 @@ public class AnnotatedFieldMatcherTest {
     }
 
     private void assertMatchingString(AnnotatedFieldMatcher matcher, Method m, String expected) {
-        Callback callback = matcher.matchMethod(m, new ThrowingProblemPolicy());
+        Callback callback = matcher.matchMethod(m);
         assertNotNull(callback);
         assertEquals(callback.call(null), expected);
     }
@@ -167,7 +167,7 @@ public class AnnotatedFieldMatcherTest {
     private Callback getCallbackFromMatcher(Object holder) {
         AnnotatedFieldMatcher matcher = new AnnotatedFieldMatcher(holder);
         Method method = getTestMethod();
-        Callback callback = matcher.matchMethod(method,new ThrowingProblemPolicy());
+        Callback callback = matcher.matchMethod(method);
         return callback;
     }
 

@@ -60,7 +60,7 @@ class AnnotatedFieldMatcher implements MethodMatcher {
 
 
     @Override
-    public  Callback matchMethod(Method method, ProblemPolicy policy) {
+    public  Callback matchMethod(Method method) {
         try {
             Field f = annotatedFields.get(method.getName());
 

@@ -37,7 +37,7 @@ public class MapMatcherTest {
         MapMatcher matcher = new MapMatcher(ImmutableMap.<String,Object>of("someMethod",23));
 
         Callback callback =
-                matcher.matchMethod(I.class.getMethods()[0],new ThrowingProblemPolicy());
+                matcher.matchMethod(I.class.getMethods()[0]);
 
         assertEquals(callback.call(null),23);
     }

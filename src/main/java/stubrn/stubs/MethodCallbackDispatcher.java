@@ -69,7 +69,7 @@ class MethodCallbackDispatcher<T> {
                 Signature signature = Signature.create(method);
 
                 if(!map.containsKey(signature)){
-                    Callback callback = matcher.matchMethod(method,problemPolicy);
+                    Callback callback = matcher.matchMethod(method);
                     if(callback != null){
                         map.put(signature,callback);
                     }

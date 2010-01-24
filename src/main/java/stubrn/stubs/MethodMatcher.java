@@ -30,12 +30,11 @@ interface MethodMatcher {
      *
      *
      * @param method
-     * @param policy
      * @return a Callback which is able handle a call of the given method
      *
      * @throws InvalidReturnTypeException If a match is obtained by the method name, and the given
      *         method has a different return type than the implementations desired callback, such
      *         an exception might be thrown.
      */
-    Callback matchMethod(Method method, ProblemPolicy policy);
+    Callback matchMethod(Method method);
 }
