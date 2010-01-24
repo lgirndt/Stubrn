@@ -17,19 +17,12 @@
  *  under the License.
  */
 
-package stubrn.stubs.handling;
+package stubrn.stubs;
 
 /**
- * A Problem Policy which will throw Exceptions
+ * Executes an arbitrary method call
  */
-public class ThrowingProblemPolicy implements ProblemPolicy {
-    @Override
-    public void handleProblem(String msg, Object o) {
-        throw new StubrnHandlingException(msg + ": " + o.toString());                
-    }
+public interface Callback {
 
-    @Override
-    public void handleProblem(String msg) {
-        throw new StubrnHandlingException(msg);
-    }
+    Object call(Object [] args);    
 }

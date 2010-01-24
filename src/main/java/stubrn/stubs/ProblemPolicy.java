@@ -17,11 +17,13 @@
  *  under the License.
  */
 
-package stubrn.stubs.handling;
+package stubrn.stubs;
 
 /**
  *
  */
-public class ExperimentalTest {
+public interface ProblemPolicy {
 
+    void handleProblem(String msg,Object o);
+    void handleProblem(String msg);
 }

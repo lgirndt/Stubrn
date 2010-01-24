@@ -17,7 +17,7 @@
  *  under the License.
  */
 
-package stubrn.stubs.handling;
+package stubrn.stubs;
 
 import com.google.common.collect.Lists;
 
@@ -28,7 +28,7 @@ import java.util.List;
 /**
  *
  */
-public class Signature {
+class Signature {
 
     private final Class<?> returnType;
     private final String name;

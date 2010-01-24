@@ -1,4 +1,4 @@
-package stubrn.stubs.handling;
+package stubrn.stubs;
 
 import java.lang.reflect.Method;
 import java.util.Map;
@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  *
  */
-public class MapMatcher implements MethodMatcher {
+class MapMatcher implements MethodMatcher {
 
     private final Map<String,Object> holder;
 

@@ -17,7 +17,7 @@
  *  under the License.
  */
 
-package stubrn.stubs.handling;
+package stubrn.stubs;
 
 import com.google.common.collect.Lists;
 import org.testng.annotations.Test;

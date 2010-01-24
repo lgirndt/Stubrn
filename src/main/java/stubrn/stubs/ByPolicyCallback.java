@@ -17,26 +17,22 @@
  *  under the License.
  */
 
-package stubrn.stubs.handling;
+package stubrn.stubs;
 
 /**
  *
  */
-public class StubrnHandlingException extends RuntimeException {
+class ByPolicyCallback implements Callback {
 
-    public StubrnHandlingException() {
-        super();
+    private final ProblemPolicy policy;
+
+    public ByPolicyCallback(ProblemPolicy policy) {
+        this.policy = policy;
     }
 
-    public StubrnHandlingException(String s) {
-        super(s);
-    }
-
-    public StubrnHandlingException(String s, Throwable throwable) {
-        super(s, throwable);
-    }
-
-    public StubrnHandlingException(Throwable throwable) {
-        super(throwable);
+    @Override
+    public Object call(Object[] args) {
+        policy.handleProblem("Such a method does not exist in stub.");
+        return null;
     }
 }

@@ -20,7 +20,6 @@
 package stubrn.stubs;
 
 import com.google.common.collect.Lists;
-import stubrn.stubs.handling.*;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
@@ -49,15 +48,15 @@ public class Stubbery {
 
     private <T> InvocationHandler createInvocationHandler(Object holder,Class<T> forClass){
 
-        Collection<MethodMatcher> matchers = Lists.<MethodMatcher>newArrayList(
+        Collection<MethodMatcher> matchers = Lists.newArrayList(
                 new AnnotatedFieldMatcher(holder),
                 new ExistingMethodMatcher(holder)
         );
 
-        MethodCallbackDispatcher dispatcher =
-                new MethodCallbackDispatcher(
+        MethodCallbackDispatcher<T> dispatcher =
+                new MethodCallbackDispatcher<T>(
                         forClass, defaultCallback,problemPolicy,matchers);
-        return new stubrn.stubs.handling.InvocationHandler(dispatcher);
+        return new stubrn.stubs.InvocationHandler(dispatcher);
     }
 
     public <T> T stubFor(Class<T> forClass, Object o){

@@ -17,7 +17,7 @@
  *  under the License.
  */
 
-package stubrn.stubs.handling;
+package stubrn.stubs;
 
 import org.testng.annotations.Test;
 import stubrn.stubs.annotations.ByName;

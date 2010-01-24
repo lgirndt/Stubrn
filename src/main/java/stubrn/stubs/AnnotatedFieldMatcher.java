@@ -17,7 +17,7 @@
  *  under the License.
  */
 
-package stubrn.stubs.handling;
+package stubrn.stubs;
 
 import com.google.common.collect.Maps;
 import stubrn.stubs.annotations.ByName;
@@ -26,13 +26,11 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Map;
 
-import static stubrn.stubs.handling.Visibilities.isNotAccessible;
-
 /**
  * Creates Method Callbacks for fields in the given Object, which are marked
  * with then respective stubrn annoations.
  */
-public class AnnotatedFieldMatcher implements MethodMatcher {
+class AnnotatedFieldMatcher implements MethodMatcher {
 
     private static final Class<ByName> ANNOTATION = ByName.class;
 
@@ -48,7 +46,7 @@ public class AnnotatedFieldMatcher implements MethodMatcher {
 
         Map<String,Field> map = Maps.newHashMap();
         for(Field f : holder.getClass().getDeclaredFields()){
-            if(isNotAccessible(f)){
+            if(Visibilities.isNotAccessible(f)){
                 continue;
             }
             f.setAccessible(true);

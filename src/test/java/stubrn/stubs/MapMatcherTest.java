@@ -16,22 +16,29 @@
  *  specific language governing permissions and limitations
  *  under the License.
  */
+package stubrn.stubs;
 
-package stubrn.stubs.handling;
+import com.google.common.collect.ImmutableMap;
+import org.testng.annotations.Test;
 
-import java.lang.reflect.Method;
+import static org.testng.Assert.assertEquals;
 
-/**
+/*
  *
  */
-public interface MethodMatcher {
+public class MapMatcherTest {
 
-    /**
-     *
-     *
-     * @param method
-     * @param policy
-     * @return a Callback which is able handle a call of the given method
-     */
-    <R> Callback matchMethod(Method method, ProblemPolicy policy);
+    interface I {
+        int someMethod();
+    }
+
+    @Test
+    public void testSimpleInvocation(){
+        MapMatcher matcher = new MapMatcher(ImmutableMap.<String,Object>of("someMethod",23));
+
+        Callback callback =
+                matcher.matchMethod(I.class.getMethods()[0],new ThrowingProblemPolicy());
+
+        assertEquals(callback.call(null),23);
+    }
 }

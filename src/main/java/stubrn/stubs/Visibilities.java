@@ -17,12 +17,27 @@
  *  under the License.
  */
 
-package stubrn.stubs.handling;
+package stubrn.stubs;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 
 /**
- * Executes an arbitrary method call
+ *
  */
-public interface Callback {
+class Visibilities {
+    static boolean isNotAccessible(Field f) {
+        int modifier = f.getModifiers();
+        return isNotAccessible(modifier);
+    }
 
-    Object call(Object [] args);    
+    private static boolean isNotAccessible(int modifier) {
+        return Modifier.isProtected(modifier) || Modifier.isPrivate(modifier);
+    }
+
+    static boolean isNotAccessible(Method m) {
+        int modifier = m.getModifiers();
+        return isNotAccessible(modifier);
+    }
 }

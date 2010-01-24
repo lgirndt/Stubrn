@@ -17,7 +17,7 @@
  *  under the License.
  */
 
-package stubrn.stubs.handling;
+package stubrn.stubs;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -31,7 +31,7 @@ import java.util.Map;
 /**
  *
  */
-public class ExistingMethodMatcher implements MethodMatcher {
+class ExistingMethodMatcher implements MethodMatcher {
 
     private Map<Signature, Callback> signatureCallbacks;
     private Map<String, Callback> nameCallbacks;

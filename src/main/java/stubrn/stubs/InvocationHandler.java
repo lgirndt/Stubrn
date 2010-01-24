@@ -17,21 +17,24 @@
  *  under the License.
  */
 
-package stubrn.stubs.handling;
+package stubrn.stubs;
+
+import java.lang.reflect.Method;
 
 /**
  *
  */
-public class ReturnValueCallback implements Callback {
+class InvocationHandler implements java.lang.reflect.InvocationHandler {
 
-    private final Object value;
+    private final MethodCallbackDispatcher dispatcher;
 
-    public ReturnValueCallback(Object value) {
-        this.value = value;
+    public InvocationHandler(MethodCallbackDispatcher dispatcher) {
+        this.dispatcher = dispatcher;
     }
 
     @Override
-    public Object call(Object[] args) {
-        return value;
+    public Object invoke(Object o, Method method, Object[] objects) throws Throwable {
+        Callback callback = dispatcher.determineCallback(method);
+        return callback.call(objects);
     }
 }

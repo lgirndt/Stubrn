@@ -17,7 +17,7 @@
  *  under the License.
  */
 
-package stubrn.stubs.handling;
+package stubrn.stubs;
 
 import com.google.common.collect.Maps;
 
@@ -28,7 +28,7 @@ import java.util.Map;
 /**
  *
  */
-public class MethodCallbackDispatcher<T> {
+class MethodCallbackDispatcher<T> {
 
     private final Class<T> onType;
 
