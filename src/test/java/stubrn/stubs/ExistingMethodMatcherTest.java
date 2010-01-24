@@ -175,6 +175,20 @@ public class ExistingMethodMatcherTest {
         Callback callback = createCallback(getSingleMethod(), holder);                
     }
 
+    public interface WithVoid {
+        void method();
+    }
+
+    @Test
+    public void testWithVoid(){
+         Callback callback = createCallback(WithVoid.class.getMethods()[0],new Object(){
+            void method(){
+
+            }
+         });
+        assertNull(callback.call(toArgs()));
+    }
+
     private void assertCallbackReturns(Callback callback, int expected) {
         assertNotNull(callback,"Callback should not be null");
         assertEquals(callback.call( toArgs(null,null) ),expected);
